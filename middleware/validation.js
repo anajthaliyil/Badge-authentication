@@ -5,8 +5,12 @@ const validateInput = (req, res, next) => {
     return res.status(400).json({ message: "All fields required" });
   }
 
-  if (password.length < 6) {
-    return res.status(400).json({ message: "Password must be at least 6 characters" });
+  if (!email.includes("@") || !email.includes(".") || !email.includes("com") ) {
+  return res.status(400).json({ message: "Invalid email format" });
+  }
+
+  if (password.length !==8) {
+    return res.status(400).json({ message: "Password must be at exactly 8 characters" });
   }
 
   next();
